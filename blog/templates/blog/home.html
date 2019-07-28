@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col" style="width:20%">Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for blog in blogs.all %}
+            <tr>
+            {% comment %} 객체 안의 데이터에 접근하기 위해서는 '.' 을 활용한다 {% endcomment %}
+            <th scope="row">{{blog.id}}</th>
+            <td><a href="{%url 'detail' blog.id%}">{{blog.title}}</a></td>
+            <td>{{blog.pub_date}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'new' %}"><button type="button" class="btn btn-primary">글쓰기</button></a>
+{% endblock %}
